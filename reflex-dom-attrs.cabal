@@ -73,9 +73,10 @@ library
 
     -- Modules exported by the library.
     exposed-modules:  Reflex.Dom.Attrs
+                      Reflex.Dom.Attrs.Internal
 
     -- Modules included in this library but not exported.
-    other-modules:    Reflex.Dom.Attrs.Internal
+    -- other-modules:
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
