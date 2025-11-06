@@ -95,3 +95,18 @@ library
 
     -- Base language which the package is written in.
     default-language: Haskell2010
+
+test-suite reflex-dom-attrs-test
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    build-depends:    base
+                    , containers
+                    , reflex
+                    , reflex-dom
+                    , reflex-dom-attrs
+                    , tasty
+                    , tasty-hunit
+                    , text
+    default-language: Haskell2010
