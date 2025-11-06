@@ -45,10 +45,11 @@ data Attrs t m = Attrs
 instance (Applicative (Dynamic t), Applicative m) => Semigroup (Attrs t m) where
   x <> y = Attrs
     { attrs_class = ((<+>) `on` attrs_class) x y
-    , attrs_style = (Map.unionWith (<+>) `on` attrs_style) x y
+    -- We use flip union in order to be right associative, so that using foldr (fold, mconcat) makes the last to set a property wins
+    , attrs_style = (flip Map.union `on` attrs_style) x y
     , attrs_attrs = (unionAttrs `on` attrs_attrs) x y
     , attrs_dynClass = (liftA2 (<+>) `on` attrs_dynClass) x y
-    , attrs_dynStyle = (liftA2 (Map.unionWith (<+>)) `on` attrs_dynStyle) x y
+    , attrs_dynStyle = (liftA2 (flip Map.union) `on` attrs_dynStyle) x y
     , attrs_dynAttrs = (liftA2 (unionAttrs) `on` attrs_dynAttrs) x y
     , attrs_self = \selfEl -> liftA2 (<>) (attrs_self x selfEl) (attrs_self y selfEl)
     }
