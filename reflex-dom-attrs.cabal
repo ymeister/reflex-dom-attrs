@@ -23,10 +23,12 @@ name:               reflex-dom-attrs
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
-synopsis:           Reflex-DOM extended attributes
+synopsis:           Enhanced attribute management for Reflex-DOM applications
 
 -- A longer description of the package.
--- description:
+description:        reflex-dom-attrs provides a composable, type-safe system for managing HTML attributes
+                    in Reflex-DOM applications. It offers a clean DSL for working with both static and
+                    dynamic attributes while optimizing performance by avoiding unnecessary Dynamic creation.
 
 -- URL for the project homepage or repository.
 homepage:           https://github.com/ymeister/reflex-dom-attrs
