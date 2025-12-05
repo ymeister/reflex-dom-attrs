@@ -31,17 +31,6 @@ type PrerenderJS t m = (Prerender t m, DomBuilderSpace (Client m) ~ GhcjsDomSpac
 
 
 
-dynSequence
-  :: ( Adjustable t m
-     , MonadHold t m
-     )
-  => Dynamic t (m a) -> m (Dynamic t a)
-dynSequence x = do
-  initial <- sample $ current x
-  widgetHold initial $ updated x
-
-
-
 (<+>) :: (IsString s, Eq s, Semigroup s) => s -> s -> s
 (<+>) = curry $ \case
   ("", "") -> ""

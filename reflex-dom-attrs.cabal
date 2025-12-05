@@ -86,9 +86,12 @@ library
                     , containers
                     , data-default
                     , ghcjs-dom
+                    , jsaddle-dom
                     , lens
                     , reflex-dom
+                    , semialign
                     , text
+                    , these
 
     -- Directories containing source files.
     hs-source-dirs:   src
