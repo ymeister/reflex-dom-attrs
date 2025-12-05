@@ -239,7 +239,7 @@ BSD3 - See LICENSE file for details
 
 ## Author
 
-Copyright (c) Yuri Meister
+Yuri Meister
 
 ## Contributing
 
