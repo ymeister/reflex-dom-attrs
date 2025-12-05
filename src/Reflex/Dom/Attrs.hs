@@ -137,7 +137,7 @@ instance (Reflex t, Applicative m) => Default (Attrs t m) where
 --
 -- * @class@ attributes are concatenated with a space separator
 -- * @style@ attributes are concatenated with semicolon separation
--- * Other attributes: the first (left) value takes precedence
+-- * Other attributes: the second (right) value takes precedence
 unionAttrs :: Map Text Text -> Map Text Text -> Map Text Text
 unionAttrs attrs1 attrs2 = Map.unionWithKey go attrs1 attrs2
   where
@@ -146,7 +146,7 @@ unionAttrs attrs1 attrs2 = Map.unionWithKey go attrs1 attrs2
       "" -> a2
       ";" -> a1 <> a2
       _ -> a1 <> ";" <> a2
-    go _ a1 _ = a1
+    go _ _ a2 = a2
 
 -- | Fold a list of 'Attrs' into a final attribute map.
 --
