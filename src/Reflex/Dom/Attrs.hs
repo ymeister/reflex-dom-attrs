@@ -202,11 +202,14 @@ foldAttrsDyn e attrss = fmap (either constDyn id) $ foldAttrs e attrss
 -- This allows attribute lists to change over time, useful for conditional
 -- attributes or attributes that depend on application state.
 foldDynAttrs :: forall t m. (Adjustable t m, MonadHold t m) => Dynamic t [Attrs t m] -> Attrs t m
-foldDynAttrs attrsDyn = (def :: Attrs t m)
-  { attrs_self = Just $ \e -> do
-      dynAttrs <- widgetHold (pure $ constDyn mempty) $ updated (foldAttrsDyn (Just e) <$> attrsDyn)
-      pure $ [ def { attrs_dynAttrs = Just $ join dynAttrs } ]
-  }
+foldDynAttrs attrsDyn =
+  (def :: Attrs t m)
+    { attrs_self = Just $ \e -> do
+        let foldedAttrs = foldAttrsDyn (Just e) <$> attrsDyn
+        initialAttrs <- sample $ current foldedAttrs
+        dynAttrs <- widgetHold initialAttrs $ updated foldedAttrs
+        pure $ [ def { attrs_dynAttrs = Just $ join dynAttrs } ]
+    }
 
 --
 -- | Has_Class
