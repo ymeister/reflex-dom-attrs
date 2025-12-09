@@ -19,7 +19,6 @@
 -- Copyright   : (c) Yuri Meister
 -- License     : BSD3
 -- Stability   : experimental
--- Portability : non-portable
 --
 -- This module provides an enhanced attribute management system for Reflex-DOM applications.
 -- It offers a composable, type-safe way to handle both static and dynamic HTML attributes,
